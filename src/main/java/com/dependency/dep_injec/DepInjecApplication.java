@@ -4,18 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.dependency.dep_injec.constructor_injection.EmailService;
+import com.dependency.dep_injec.constructor_injection.MessagingService;
+import com.dependency.dep_injec.constructor_injection.UserNotificationService;
+
 @SpringBootApplication
 public class DepInjecApplication {
 	@Autowired
-		private App app;
-
-	public static void main(String[] args) {
+		//private App app;
+		///private  UserService userservice;
 		
-		var context = SpringApplication.run(DepInjecApplication.class, args);
-
-        // Get the App bean from the context and call the helloService method
-        App app = context.getBean(App.class);
-        app.HelloService();
+			public static void main(String[] args) {
+				
+				var context = SpringApplication.run(DepInjecApplication.class, args);
+		
+				// Get the App bean from the context and call the helloService method
+				// UserService userservice = context.getBean(UserService.class);
+				// userservice.greetUser("shree");
+				MessagingService emailservice = context.getBean("emailservice",MessagingService.class);
+				emailservice.sendMessage("Hellooooooo");
 	}
 
 }
